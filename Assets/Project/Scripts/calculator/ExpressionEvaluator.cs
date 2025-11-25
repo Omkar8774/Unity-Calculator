@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public static class ExpressionEvaluator
 {
-    // Main DMAS evaluation function
+ 
     public static float Evaluate(string expression)
     {
         if (string.IsNullOrEmpty(expression))
@@ -16,9 +16,7 @@ public static class ExpressionEvaluator
         return ApplyAdditionAndSubtraction(numbers, operators);
     }
 
-    // -----------------------------
-    // Step 1: Parse expression 
-    // -----------------------------
+
     private static void ParseExpression(string expr, List<float> nums, List<char> ops)
     {
         string buffer = "";
@@ -37,12 +35,9 @@ public static class ExpressionEvaluator
             }
         }
 
-        nums.Add(float.Parse(buffer)); // last number
+        nums.Add(float.Parse(buffer));
     }
 
-    // -----------------------------
-    // Step 2: DMAS (first / then *)
-    // -----------------------------
     private static void ApplyDivisionAndMultiplication(List<float> nums, List<char> ops)
     {
         for (int i = 0; i < ops.Count; i++)
@@ -58,14 +53,12 @@ public static class ExpressionEvaluator
                 nums[i] = result;
                 nums.RemoveAt(i + 1);
                 ops.RemoveAt(i);
-                i--; // stay at same index
+                i--; 
             }
         }
     }
 
-    // -----------------------------
-    // Step 3: AS (left to right)
-    // -----------------------------
+ 
     private static float ApplyAdditionAndSubtraction(List<float> nums, List<char> ops)
     {
         float result = nums[0];

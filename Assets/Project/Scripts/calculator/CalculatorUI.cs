@@ -9,18 +9,15 @@ public class CalculatorUI : MonoBehaviour
 
     private string expression = "";
 
-    // -----------------------------
+
     // Number Buttons (0–9)
-    // -----------------------------
+
     public void PressNumber(string num)
     {
         expression += num;
         UpdateUI();
     }
-
-    // -----------------------------
     // Operator Buttons (+ - * /)
-    // -----------------------------
     public void PressOperator(string op)
     {
         if (expression.Length == 0)
@@ -28,7 +25,6 @@ public class CalculatorUI : MonoBehaviour
 
         char last = expression[expression.Length - 1];
 
-        // Prevent double operators
         if ("+-*/".Contains(last.ToString()))
             expression = expression.Remove(expression.Length - 1);
 
@@ -36,9 +32,7 @@ public class CalculatorUI : MonoBehaviour
         UpdateUI();
     }
 
-    // -----------------------------
     // Clear Last Character
-    // -----------------------------
     public void PressClear()
     {
         if (expression.Length > 0)
@@ -48,9 +42,7 @@ public class CalculatorUI : MonoBehaviour
         }
     }
 
-    // -----------------------------
     // Reset Everything
-    // -----------------------------
     public void PressReset()
     {
         expression = "";
@@ -58,9 +50,7 @@ public class CalculatorUI : MonoBehaviour
         UpdateUI();
     }
 
-    // -----------------------------
     // Evaluate Expression (=)
-    // -----------------------------
     public void PressEquals()
     {
         if (string.IsNullOrEmpty(expression))
@@ -69,10 +59,7 @@ public class CalculatorUI : MonoBehaviour
         float result = ExpressionEvaluator.Evaluate(expression);
         resultText.text = result.ToString();
     }
-
-    // -----------------------------
     // UI Update
-    // -----------------------------
     private void UpdateUI()
     {
         expressionText.text = expression;
